@@ -22,9 +22,13 @@ Gem::Specification.new do |spec|
 		      "public gem pushes."
 	end
 
-	spec.files         = `git ls-files -z`.split("\x0").reject do |f|
-		f.match(%r{^(test|spec|features)/})
-	end
+	spec.files         = [".gitignore", ".gitlab-ci.yml", ".travis.yml", "CODE_OF_CONDUCT.md", "Gemfile", "README.md", "Rakefile", "bin/console", "bin/setup", "eisiges-di-core-0.1.0.gem", "eisiges-di-provider-default.gemspec", "lib/eisiges/di/provider/default.rb", "lib/eisiges/di/provider/default/version.rb"]
+
+	#spec.files         = `git ls-files -z`.split("\x0").reject do |f|
+	#	f.match(%r{^(test|spec|features)/})
+	#end
+	#puts "spec.files         = #{spec.files}"
+
 	spec.bindir        = "exe"
 	spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
 	spec.require_paths = ["lib"]
