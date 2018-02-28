@@ -16,13 +16,13 @@ Gem::Specification.new do |spec|
 	# Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
 	# to allow pushing to a single host or delete this section to allow pushing to any host.
 	if spec.respond_to?(:metadata)
-		spec.metadata['allowed_push_host'] = "'http://localhost'"
+		spec.metadata['allowed_push_host'] = 'http://gems.mccollum.enterprises'
 	else
 		raise "RubyGems 2.0 or newer is required to protect against " \
 		      "public gem pushes."
 	end
 
-	spec.files         = [".gitignore", ".gitlab-ci.yml", ".travis.yml", "CODE_OF_CONDUCT.md", "Gemfile", "README.md", "Rakefile", "bin/console", "bin/setup", "eisiges-di-core-0.1.0.gem", "eisiges-di-provider-default.gemspec", "lib/eisiges/di/provider/default.rb", "lib/eisiges/di/provider/default/version.rb"]
+	spec.files         = [".gitignore", ".gitlab-ci.yml", ".travis.yml", "CODE_OF_CONDUCT.md", "Gemfile", "README.md", "Rakefile", "bin/console", "bin/setup", "eisiges-di-provider-default.gemspec", "lib/eisiges/di/provider/default.rb", "lib/eisiges/di/provider/default/version.rb"]
 
 	#spec.files         = `git ls-files -z`.split("\x0").reject do |f|
 	#	f.match(%r{^(test|spec|features)/})

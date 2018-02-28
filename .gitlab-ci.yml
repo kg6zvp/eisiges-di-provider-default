@@ -8,7 +8,7 @@ stages:
 build:
   stage: build
   script:
-    - gem install --force --local eisiges-di-core-0.1.0.gem
+    - gem sources -a http://gems.mccollum.enterprises/
     - bundle install
     - gem build eisiges-di-provider-default.gemspec
   artifacts:
@@ -19,14 +19,16 @@ build:
 test:
   stage: test
   script:
-    - gem install --force --local eisiges-di-core-0.1.0.gem
+    - gem sources -a http://gems.mccollum.enterprises/
     - bundle install
     - bundle exec rake test
 
 deploy:
   stage: deploy
   script:
-    - echo "Run deployment script here"
+    - gem sources -a http://gems.mccollum.enterprises/
+    - gem install geminabox
+    - gem inabox --host 'http://gems.mccollum.enterprises' --overwrite eisiges-di-provider-default-*.gem
   only:
     - master
 
