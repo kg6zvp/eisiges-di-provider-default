@@ -1,0 +1,34 @@
+image: 'ruby:alpine'
+
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  stage: build
+  script:
+    - gem install --force --local eisiges-di-core-0.1.0.gem
+    - bundle install
+    - gem build eisiges-di-provider-default.gemspec
+  artifacts:
+    paths:
+      - eisiges-di-provider-default-*.gem
+    expire_in: 1 week
+
+test:
+  stage: test
+  script:
+    - gem install --force --local eisiges-di-core-0.1.0.gem
+    - bundle install
+    - bundle exec rake test
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Run deployment script here"
+  only:
+    - master
+
+after_script:
+  - echo "End CI"
