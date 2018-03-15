@@ -8,7 +8,6 @@ stages:
 build:
   stage: build
   script:
-    - gem sources -a http://gems.mccollum.enterprises/
     - bundle install
     - gem build eisiges-di-provider-default.gemspec
   artifacts:
@@ -19,7 +18,6 @@ build:
 test:
   stage: test
   script:
-    - gem sources -a http://gems.mccollum.enterprises/
     - bundle install
     - bundle exec rake test
 
