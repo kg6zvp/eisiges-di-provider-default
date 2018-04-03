@@ -10,17 +10,17 @@ module Eisiges
 				end
 
 				def self.create_instance(klasse, current_pool={})
-					return klasse.new unless klasse.has_provider?
+					return klasse.new unless klasse.has_instance_factory?
 					
 					depList = {}
-					#iterate over providers
-					klasse.provider[:dependencies].each do |varName, klasse|
+					#iterate over factories
+					klasse.instance_factory[:dependencies].each do |varName, klasse|
 							depList[varName.to_sym] = get(klasse, current_pool)
 					end
 
-					return klasse.new(depList) if klasse.provider[:block].nil?
+					return klasse.new(depList) if klasse.instance_factory[:block].nil?
 
-					return klasse.provider[:block].call(depList)
+					return klasse.instance_factory[:block].call(depList)
 				end
 
 				# Perform injection on an instance of a class first using the current_pool which has been provided
