@@ -1,5 +1,8 @@
 image: 'ruby:alpine'
 
+before_script:
+  - apk update && apk add openssl ca-certificates git
+
 variables:
   GIT_SUBMODULES: init
   GIT_SUBMODULE_STRATEGY: recursive
@@ -31,6 +34,14 @@ deploy:
     - gem sources -a http://gems.mccollum.enterprises/
     - gem install geminabox
     - gem inabox --host 'http://gems.mccollum.enterprises' --overwrite eisiges-di-provider-default-*.gem
+    - git clone "$CI_REPOSITORY_URL" g-eisiges-di-provider-default
+    - cd g-eisiges-di-provider-default
+    - git config user.email "kg6zvp@gmail.com"
+    - git config user.name "Sam McCollum"
+    - git remote add github "https://kg6zvp:$GITHUB_PERSONAL_ACCESS_TOKEN@github.com/kg6zvp/eisiges-di-provider-default.git"
+    - git push --force github master
+    - cd ..
+    - rm -rf g-eisiges-di-provider-default
   only:
     - master
 
